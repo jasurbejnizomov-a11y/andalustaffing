@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andalus Hospitality Staffing — London's Premier Staffing Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@200;300;400;500&family=Cormorant:ital,wght@0,300;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a1628;--navy2:#0d1f3c;--navy3:#102547;--navy4:#163260;
+  --blue:#1a4b8c;--blue2:#1e5aa8;--blue3:#2266c4;--accent:#3b82e8;
+  --sky:#e8f0fb;--sky2:#d4e4f7;--sky3:#c2d8f4;
+  --white:#ffffff;--offwhite:#f8fafd;--light:#eef4fc;
+  --text:#0a1628;--text2:#2d4a6e;--text3:#5a7a9e;--text4:#8aaccc;
+  --gold:#b8902a;--goldl:#d4aa45;
+  --ease:cubic-bezier(.16,1,.3,1);--ease2:cubic-bezier(.4,0,.2,1);
+  --shadow:0 4px 32px rgba(10,22,40,.12);--shadow2:0 16px 80px rgba(10,22,40,.18);
+}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
+::selection{background:var(--accent);color:var(--white)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--sky)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--blue),var(--accent))}
+
+/* ── LOADER ── */
+#loader{position:fixed;inset:0;z-index:9000;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:32px;transition:opacity 1s var(--ease),transform 1.2s var(--ease)}
+#loader.gone{opacity:0;transform:translateY(-20px);pointer-events:none}
+.lw{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:300;letter-spacing:.16em;color:var(--white);overflow:hidden;white-space:nowrap}
+.lw span{display:inline-block;transform:translateY(110%);animation:slup .8s var(--ease) both}
+.lbar-wrap{width:220px;height:1px;background:rgba(255,255,255,.1);position:relative;overflow:hidden}
+.lbar{position:absolute;left:0;top:0;height:100%;width:0;background:linear-gradient(90deg,transparent,var(--accent),var(--sky3),transparent);transition:width 2s var(--ease)}
+.lpct{font-family:'DM Sans',sans-serif;font-size:.58rem;letter-spacing:.36em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:800;padding:36px 80px;display:flex;align-items:center;justify-content:space-between;transition:all .55s var(--ease)}
+nav.stuck{padding:16px 80px;background:rgba(255,255,255,.97);backdrop-filter:blur(24px);border-bottom:1px solid rgba(10,22,40,.07);box-shadow:0 2px 24px rgba(10,22,40,.06)}
+nav.stuck .nbrand{color:var(--navy)}
+nav.stuck .nlinks a{color:var(--text3)}
+nav.stuck .nlinks a:hover{color:var(--blue)}
+nav.stuck .ncta{border-color:var(--blue);color:var(--blue)}
+nav.stuck .ncta:hover{background:var(--blue);color:var(--white)}
+.nbrand{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:300;letter-spacing:.1em;color:rgba(255,255,255,.92);text-decoration:none;display:flex;align-items:center;gap:10px;transition:color .35s}
+.nbrand-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:breathe 2.5s ease-in-out infinite}
+.nbrand b{font-weight:400}
+.nlinks{display:flex;gap:44px;list-style:none}
+.nlinks a{font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55);text-decoration:none;transition:color .3s;position:relative}
+.nlinks a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:linear-gradient(90deg,var(--accent),var(--sky2));transition:width .4s var(--ease)}
+.nlinks a:hover{color:rgba(255,255,255,.9)}
+.nlinks a:hover::after{width:100%}
+.ncta{font-family:'DM Sans',sans-serif;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;padding:13px 28px;border:1px solid rgba(255,255,255,.35);color:rgba(255,255,255,.85);text-decoration:none;position:relative;overflow:hidden;transition:all .35s}
+.ncta:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.65)}
+
+/* ── HERO ── */
+#hero{position:relative;height:100vh;min-height:700px;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,22,40,.82) 0%,rgba(10,22,40,.3) 55%,rgba(10,22,40,.65) 100%);z-index:1}
+.hero-vign{position:absolute;bottom:0;left:0;right:0;height:55vh;background:linear-gradient(0deg,rgba(10,22,40,.9),transparent);z-index:1}
+.hcontent{position:relative;z-index:3;padding:0 80px 110px;max-width:1100px}
+.heyebrow{display:flex;align-items:center;gap:14px;margin-bottom:40px;opacity:0;animation:fup .7s .3s var(--ease) both}
+.heb-line{width:52px;height:1px;background:linear-gradient(90deg,var(--accent),transparent)}
+.heb-txt{font-family:'DM Sans',sans-serif;font-size:.64rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.heb-badge{margin-left:auto;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;padding:5px 14px;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.4)}
+h1.hh{font-family:'Playfair Display',serif;font-weight:300;font-size:clamp(4.2rem,9vw,11rem);line-height:.88;margin-bottom:48px;color:var(--white)}
+.hline{display:block;overflow:hidden}
+.hline span{display:block;transform:translateY(110%);animation:slup .95s var(--ease) both}
+h1 .hi{font-style:italic;color:var(--sky2)}
+h1 .hd{opacity:.38}
+.hdesc-row{display:flex;align-items:flex-end;gap:80px;opacity:0;animation:fup .85s 1s var(--ease) both}
+.hdesc{font-size:1rem;line-height:2;color:rgba(255,255,255,.65);max-width:460px}
+.hbtns{display:flex;flex-direction:column;gap:14px;flex-shrink:0}
+.hscroll{position:absolute;right:80px;bottom:52px;z-index:3;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;animation:fup .7s 1.8s var(--ease) both}
+.hsline{width:1px;height:64px;background:linear-gradient(rgba(255,255,255,.5),transparent);animation:scroll-pulse 2s ease-in-out infinite}
+.hstxt{font-family:'DM Sans',sans-serif;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+
+/* BUTTONS */
+.btn-primary{display:inline-flex;align-items:center;gap:12px;padding:18px 46px;background:var(--blue);color:var(--white);font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .35s;position:relative;overflow:hidden;white-space:nowrap}
+.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--blue3),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);z-index:0}
+.btn-primary:hover::before{transform:scaleX(1)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 20px 60px rgba(26,75,140,.4)}
+.btn-primary em,.btn-primary i{position:relative;z-index:1}
+.btn-primary i{font-style:normal}
+.btn-ghost{font-family:'DM Sans',sans-serif;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);text-decoration:none;display:flex;align-items:center;gap:10px;transition:color .3s;white-space:nowrap}
+.btn-ghost:hover{color:rgba(255,255,255,.9)}
+.btn-ghost::after{content:'↗';font-size:.9rem;transition:transform .35s}
+.btn-ghost:hover::after{transform:translate(3px,-3px)}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;padding:16px 40px;border:1.5px solid var(--blue);color:var(--blue);font-family:'DM Sans',sans-serif;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .35s;position:relative;overflow:hidden}
+.btn-outline::before{content:'';position:absolute;inset:0;background:var(--blue);transform:scaleY(0);transform-origin:bottom;transition:transform .4s var(--ease);z-index:0}
+.btn-outline:hover::before{transform:scaleY(1)}
+.btn-outline:hover{color:var(--white)}
+.btn-outline em{position:relative;z-index:1}
+
+/* ── MARQUEE ── */
+.mq{position:relative;z-index:2;padding:20px 0;overflow:hidden;border-top:1px solid rgba(10,22,40,.08);border-bottom:1px solid rgba(10,22,40,.08);background:var(--offwhite)}
+.mq-track{display:flex;animation:mq 50s linear infinite;width:max-content}
+.mq-item{display:flex;align-items:center;gap:18px;padding:0 44px;font-family:'DM Sans',sans-serif;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--text3);white-space:nowrap}
+.mq-dot{width:4px;height:4px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.mq-diamond{width:6px;height:6px;background:transparent;border:1px solid var(--accent);transform:rotate(45deg);flex-shrink:0;opacity:.5}
+
+/* ── SECTION LABEL ── */
+.slbl{display:inline-flex;align-items:center;gap:12px;font-family:'DM Sans',sans-serif;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--blue);margin-bottom:18px}
+.slbl::before{content:'';width:32px;height:1px;background:linear-gradient(90deg,var(--accent),transparent)}
+.sh2{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,3.6vw,3.8rem);font-weight:300;line-height:1.1;margin-top:14px;color:var(--navy)}
+.sh2 em{font-style:italic;color:var(--blue)}
+.sbody{font-size:.94rem;line-height:2.1;color:var(--text2)}
+
+/* ── AWARD STRIP ── */
+#awards{position:relative;z-index:2;padding:52px 80px;background:var(--navy);border-bottom:1px solid rgba(255,255,255,.05)}
+.awards-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:44px}
+.aw-label{font-family:'DM Sans',sans-serif;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.3);white-space:nowrap;flex-shrink:0}
+.aw-divider{flex:1;height:1px;background:rgba(255,255,255,.08)}
+.aw-items{display:flex;align-items:center;gap:60px;flex-shrink:0}
+.aw-item{text-align:center}
+.aw-num{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:300;color:var(--sky2);line-height:1;display:block}
+.aw-txt{font-family:'DM Sans',sans-serif;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:5px;display:block}
+
+/* ── ABOUT ── */
+#about{position:relative;z-index:2;background:var(--white);padding:160px 0;overflow:hidden}
+#about::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 100% 50%,rgba(59,130,232,.03),transparent)}
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:center;max-width:1400px;margin:0 auto;padding:0 80px}
+.about-img-wrap{position:relative}
+.about-img{width:100%;height:580px;object-fit:cover;display:block}
+.about-img-frame{position:absolute;inset:-16px;border:1px solid rgba(59,130,232,.15);pointer-events:none;z-index:-1}
+.about-img-badge{position:absolute;bottom:-24px;right:-24px;background:var(--blue);color:var(--white);padding:26px 30px;text-align:center}
+.about-img-badge strong{display:block;font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:300;line-height:1}
+.about-img-badge span{font-family:'DM Sans',sans-serif;font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;margin-top:4px;display:block;opacity:.75}
+.about-features{display:flex;flex-direction:column;gap:28px;margin-top:46px}
+.af{display:flex;gap:18px;align-items:flex-start;padding:22px 24px;border-left:2px solid var(--sky2);transition:border-color .35s,background .35s}
+.af:hover{border-color:var(--blue);background:var(--sky)}
+.af-ico{font-size:1.4rem;flex-shrink:0;margin-top:2px}
+.af-txt strong{display:block;font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:400;margin-bottom:5px;color:var(--navy)}
+.af-txt p{font-size:.82rem;color:var(--text2);line-height:1.9}
+
+/* ── STATS ── */
+#stats{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;min-height:82vh}
+.sl{background:var(--navy);padding:120px 80px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.sl::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at -10% 50%,rgba(59,130,232,.12),transparent)}
+.sl .slbl{color:var(--sky3)}
+.sl .sh2{color:var(--white)}
+.sl .sh2 em{color:var(--sky2)}
+.sl .sbody{color:rgba(255,255,255,.55)}
+.sr{background:var(--light);display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.sc{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:56px 32px;border:1px solid rgba(59,130,232,.1);position:relative;overflow:hidden;transition:background .45s,border-color .4s;cursor:default}
+.sc:hover{background:var(--white);border-color:rgba(59,130,232,.25)}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--accent));transform:scaleX(0);transition:transform .6s var(--ease)}
+.sc:hover::before{transform:scaleX(1)}
+.sc-ico{font-size:1.5rem;margin-bottom:16px;opacity:.45}
+.sc-n{font-family:'Playfair Display',serif;font-size:clamp(3rem,5.5vw,6rem);font-weight:300;color:var(--blue);line-height:1;margin-bottom:8px}
+.sc-n sup{font-size:.38em;vertical-align:super;margin-left:2px;opacity:0;transition:opacity .3s}
+.sc-t{font-family:'DM Sans',sans-serif;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);text-align:center;line-height:1.7}
+
+/* ── PHOTO GALLERY FULL ── */
+#gallery-main{position:relative;z-index:2;background:var(--white);padding:100px 0 0}
+.gallery-header{max-width:1400px;margin:0 auto;padding:0 80px 60px;display:flex;align-items:flex-end;justify-content:space-between}
+.gal-grid{display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto;gap:3px;padding:0 3px}
+.gi{overflow:hidden;position:relative}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease),filter .6s}
+.gi:hover img{transform:scale(1.06);filter:brightness(1.1)}
+.gi::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,22,40,.55) 0%,transparent 55%);opacity:0;transition:opacity .4s}
+.gi:hover::after{opacity:1}
+.gi-cap{position:absolute;bottom:20px;left:20px;z-index:1;font-family:'DM Sans',sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);opacity:0;transform:translateY(8px);transition:all .4s}
+.gi:hover .gi-cap{opacity:1;transform:none}
+.gi1{grid-column:1/5;grid-row:1/3;height:460px}
+.gi2{grid-column:5/8;grid-row:1;height:224px}
+.gi3{grid-column:8/13;grid-row:1;height:224px}
+.gi4{grid-column:5/8;grid-row:2;height:233px}
+.gi5{grid-column:8/10;grid-row:2;height:233px}
+.gi6{grid-column:10/13;grid-row:2;height:233px}
+.gi7{grid-column:1/4;height:280px}
+.gi8{grid-column:4/8;height:280px}
+.gi9{grid-column:8/10;height:280px}
+.gi10{grid-column:10/13;height:280px}
+
+/* ── SERVICES ── */
+#services{position:relative;z-index:2;padding:160px 0;background:var(--offwhite)}
+.wrap{max-width:1400px;margin:0 auto;padding:0 80px}
+.svc-head{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:end;margin-bottom:80px}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(59,130,232,.1)}
+.scard{background:var(--white);padding:60px 46px;position:relative;overflow:hidden;transition:background .4s;cursor:default}
+.scard:hover{background:var(--navy)}
+.scard:hover h3,.scard:hover p,.scard:hover .scard-link{color:rgba(255,255,255,.85)}
+.scard:hover .sc-num{color:rgba(255,255,255,.18)}
+.scard::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:linear-gradient(var(--blue),var(--accent));transition:height .65s var(--ease)}
+.scard:hover::before{height:100%}
+.sc-num{font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:rgba(59,130,232,.25);margin-bottom:28px;display:block;transition:color .4s}
+.sc-ico2{font-size:2.6rem;margin-bottom:24px;display:block;transition:transform .5s var(--ease)}
+.scard:hover .sc-ico2{transform:translateY(-5px) scale(1.06)}
+.scard h3{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:400;margin-bottom:14px;line-height:1.15;color:var(--navy);transition:color .4s}
+.scard p{font-size:.83rem;line-height:2;color:var(--text2);transition:color .4s}
+.scard-link{display:inline-flex;align-items:center;gap:7px;margin-top:26px;font-family:'DM Sans',sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);opacity:0;transform:translateY(6px);transition:all .35s}
+.scard:hover .scard-link{opacity:.7;transform:none}
+
+/* ── CLIENT STORIES ── */
+#clients{position:relative;z-index:2;background:var(--navy);overflow:hidden}
+#clients::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.07),transparent)}
+.clients-top{padding:160px 80px 80px;max-width:1400px;margin:0 auto}
+.clients-big{font-family:'Playfair Display',serif;font-size:clamp(3rem,7.5vw,9.5rem);font-weight:300;line-height:.88;margin-top:28px;color:var(--white)}
+.clients-big em{font-style:italic;color:var(--sky2)}
+.clients-big .dim{opacity:.2}
+.clients-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(255,255,255,.05)}
+.ccard{background:var(--navy2);padding:54px 46px;position:relative;overflow:hidden;transition:all .45s}
+.ccard:hover{background:var(--navy3);transform:translateY(-6px)}
+.ccard-border{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .65s var(--ease)}
+.ccard:hover .ccard-border{transform:scaleX(1)}
+.cc-cat{font-family:'DM Sans',sans-serif;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;display:flex;align-items:center;gap:9px}
+.cc-cat::before{content:'';width:18px;height:1px;background:currentColor}
+.cc-name{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:400;margin-bottom:13px;line-height:1.2;color:var(--white)}
+.cc-body{font-size:.83rem;line-height:2;color:rgba(255,255,255,.45);margin-bottom:28px}
+.cc-stats{display:flex;gap:24px;padding-top:22px;border-top:1px solid rgba(255,255,255,.07)}
+.ccs .csn{font-family:'Playfair Display',serif;font-size:2rem;font-weight:300;color:var(--sky2);line-height:1}
+.ccs .csl{font-family:'DM Sans',sans-serif;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-top:5px}
+
+/* ── TESTIMONIALS ── */
+#testimonials{position:relative;z-index:2;padding:160px 0;background:var(--white);overflow:hidden}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(59,130,232,.08);margin-top:80px}
+.tc{padding:56px 46px;background:var(--white);position:relative;overflow:hidden;transition:background .4s}
+.tc:hover{background:var(--light)}
+.tc-qm{position:absolute;top:20px;right:36px;font-family:'Playfair Display',serif;font-size:8rem;color:rgba(59,130,232,.05);line-height:1;font-style:italic;pointer-events:none}
+.tc:hover .tc-qm{color:rgba(59,130,232,.09)}
+.tc-stars{display:flex;gap:4px;margin-bottom:22px}
+.tc-stars span{color:var(--blue);font-size:.75rem}
+.tc-body{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;line-height:1.82;color:var(--navy);margin-bottom:32px}
+.tc-author{display:flex;align-items:center;gap:16px}
+.tc-ava{width:48px;height:48px;border-radius:50%;background:var(--sky);border:1.5px solid rgba(59,130,232,.2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--blue)}
+.tc-name{font-size:.88rem;font-weight:400;margin-bottom:3px;color:var(--navy)}
+.tc-role{font-family:'DM Sans',sans-serif;font-size:.64rem;color:var(--text3);letter-spacing:.07em}
+
+/* ── PHOTO STRIP ── */
+#photo-strip{position:relative;z-index:2;display:grid;grid-template-columns:repeat(5,1fr);height:380px;gap:3px}
+.ps-item{overflow:hidden;position:relative}
+.ps-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease),filter .6s}
+.ps-item:hover img{transform:scale(1.09);filter:brightness(1.12)}
+.ps-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,22,40,.5),transparent 60%);transition:opacity .4s}
+.ps-item:hover::after{opacity:.6}
+.ps-cap{position:absolute;bottom:18px;left:20px;z-index:1;font-family:'DM Sans',sans-serif;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+
+/* ── PROCESS ── */
+#process{position:relative;z-index:2;background:var(--navy);padding:160px 0}
+.proc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:90px;position:relative}
+.proc-row::before{content:'';position:absolute;top:48px;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),rgba(255,255,255,.2),rgba(255,255,255,.12),transparent)}
+.pstep{padding:0 28px;text-align:center;position:relative}
+.pnum{width:72px;height:72px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;margin:0 auto 36px;font-family:'Playfair Display',serif;font-size:1.2rem;font-style:italic;color:var(--sky2);position:relative;transition:all .45s var(--ease);background:rgba(255,255,255,.03)}
+.pstep:hover .pnum{background:linear-gradient(135deg,var(--blue),var(--accent));color:var(--white);border-color:transparent;transform:scale(1.1);box-shadow:0 16px 48px rgba(59,130,232,.35)}
+.pstep h4{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:400;margin-bottom:12px;color:var(--white)}
+.pstep p{font-size:.8rem;line-height:1.9;color:rgba(255,255,255,.4)}
+#process .slbl{color:var(--sky3)}
+#process .sh2{color:var(--white)}
+#process .sh2 em{color:var(--sky2)}
+
+/* ── SECTORS ── */
+#sectors{position:relative;z-index:2;padding:160px 0;background:var(--offwhite)}
+.sectors-g{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;background:rgba(59,130,232,.1);margin-top:70px;max-width:1400px;margin-left:auto;margin-right:auto;padding-left:80px;padding-right:80px}
+.stile{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--white);cursor:default;transition:background .4s}
+.stile:hover{background:var(--navy)}
+.stbg-img{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.15;transition:opacity .6s,transform .7s var(--ease)}
+.stile:hover .stbg-img{opacity:.3;transform:scale(1.08)}
+.stinner{position:relative;z-index:1;padding:42px;height:100%;display:flex;flex-direction:column;justify-content:flex-end}
+.stnum{font-family:'Playfair Display',serif;font-style:italic;font-size:.85rem;color:rgba(59,130,232,.3);margin-bottom:auto}
+.sticon{font-size:3rem;margin-bottom:16px;display:block;transition:transform .5s var(--ease)}
+.stile:hover .sticon{transform:translateY(-8px)}
+.stile h4{font-family:'Playfair Display',serif;font-size:1.65rem;font-weight:400;margin-bottom:7px;transition:color .35s;line-height:1.05;color:var(--navy)}
+.stile:hover h4{color:var(--sky2)}
+.stile p{font-size:.78rem;color:var(--text3);line-height:1.65;transition:color .35s}
+.stile:hover p{color:rgba(255,255,255,.5)}
+.stbar{position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
+.stile:hover .stbar{transform:scaleX(1)}
+
+/* ── WHY ── */
+#why{position:relative;z-index:2;background:var(--white);padding:160px 0;overflow:hidden}
+.why-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:120px;align-items:center}
+.why-tiles{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(59,130,232,.08)}
+.wtile{background:var(--white);padding:44px 36px;position:relative;overflow:hidden;transition:background .4s}
+.wtile:hover{background:var(--navy)}
+.wtile:hover h4{color:var(--white)}
+.wtile:hover p{color:rgba(255,255,255,.5)}
+.wtile::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--accent));transform:scaleX(0);transition:transform .6s var(--ease)}
+.wtile:hover::before{transform:scaleX(1)}
+.wtico{font-size:1.9rem;margin-bottom:18px;display:block;transition:transform .4s var(--ease)}
+.wtile:hover .wtico{transform:scale(1.1)}
+.wtile h4{font-family:'Playfair Display',serif;font-size:1.22rem;font-weight:400;margin-bottom:10px;color:var(--navy);transition:color .4s}
+.wtile p{font-size:.81rem;line-height:1.9;color:var(--text2);transition:color .4s}
+
+/* ── BELIEVE ── */
+#believe{position:relative;z-index:2;background:var(--offwhite);padding:160px 0;overflow:hidden}
+.believe-layout{display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:center;max-width:1400px;margin:0 auto;padding:0 80px}
+.believe-list{display:flex;flex-direction:column;gap:0;margin-top:44px}
+.bitem{display:flex;gap:22px;align-items:flex-start;padding:30px 0;border-bottom:1px solid rgba(59,130,232,.1)}
+.bitem:last-child{border-bottom:none}
+.bnum{font-family:'Playfair Display',serif;font-style:italic;font-size:1.7rem;color:rgba(59,130,232,.2);flex-shrink:0;line-height:1;width:38px}
+.bitem strong{display:block;font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:400;margin-bottom:7px;color:var(--navy)}
+.bitem p{font-size:.82rem;color:var(--text2);line-height:1.9}
+.believe-photo{position:relative}
+.believe-photo img{width:100%;height:620px;object-fit:cover;display:block}
+.believe-photo::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,75,140,.1),transparent);z-index:1}
+
+/* ── PHOTO COLLAGE ── */
+#gallery2{position:relative;z-index:2;padding:0}
+.collage{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:320px 320px;gap:3px;background:rgba(59,130,232,.08)}
+.ci-item{overflow:hidden;position:relative}
+.ci-item img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease),filter .6s}
+.ci-item:hover img{transform:scale(1.07);filter:brightness(1.1) saturate(1.1)}
+.ci-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,22,40,.45),transparent 55%);opacity:0;transition:opacity .4s}
+.ci-item:hover::after{opacity:1}
+.ci-label{position:absolute;bottom:16px;left:18px;z-index:1;font-family:'DM Sans',sans-serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);opacity:0;transform:translateY(6px);transition:all .4s}
+.ci-item:hover .ci-label{opacity:1;transform:none}
+.ci1{grid-column:1/3;grid-row:1/3}
+.ci2{grid-column:3/5;grid-row:1}
+.ci3{grid-column:5/7;grid-row:1}
+.ci4{grid-column:3/4;grid-row:2}
+.ci5{grid-column:4/6;grid-row:2}
+.ci6{grid-column:6/7;grid-row:2}
+
+/* ── CTA ── */
+#cta{position:relative;z-index:2;padding:140px 0;background:var(--blue);overflow:hidden}
+#cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 85% 50%,rgba(255,255,255,.07),transparent)}
+.cta-layout{display:grid;grid-template-columns:1.3fr 1fr;gap:80px;align-items:center}
+.ctal h2{font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,7rem);font-weight:300;line-height:.92;margin-top:18px;color:var(--white)}
+.ctal h2 em{font-style:italic;color:var(--sky2);display:block}
+.ctal p{font-size:.95rem;line-height:2.1;color:rgba(255,255,255,.6);margin-top:24px;max-width:460px}
+.cta-btns{display:flex;gap:14px;margin-top:44px;flex-wrap:wrap}
+.ctaboxes{display:flex;flex-direction:column;gap:12px}
+.ctabox{display:flex;align-items:center;gap:20px;padding:24px 28px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);transition:all .4s;cursor:default;text-decoration:none}
+.ctabox:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);transform:translateX(8px)}
+.cbico{font-size:1.7rem;flex-shrink:0}
+.cbtxt strong{display:block;font-size:.85rem;font-weight:400;margin-bottom:3px;color:var(--white)}
+.cbtxt span{font-size:.75rem;color:rgba(255,255,255,.45)}
+#cta .slbl{color:rgba(255,255,255,.5)}
+#cta .slbl::before{background:linear-gradient(90deg,rgba(255,255,255,.5),transparent)}
+
+/* ── MAP ── */
+#maparea{position:relative;z-index:2;background:var(--offwhite);padding:120px 0 0}
+.map-layout{display:grid;grid-template-columns:1fr 1fr;max-width:1400px;margin:0 auto;padding:0 80px 0;gap:80px;align-items:start;margin-bottom:60px}
+.map-embed{width:100%;height:460px;border:1px solid rgba(59,130,232,.12);filter:saturate(.8) contrast(1.05)}
+.map-info h3{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3vw,2.6rem);font-weight:300;margin-top:16px;margin-bottom:38px;color:var(--navy)}
+.map-info h3 em{font-style:italic;color:var(--blue)}
+.mitem{display:flex;gap:16px;align-items:flex-start;padding:20px 0;border-bottom:1px solid rgba(59,130,232,.08)}
+.mitem:last-child{border-bottom:none}
+.mico{width:40px;height:40px;border:1px solid rgba(59,130,232,.2);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;background:var(--sky)}
+.mitem-txt strong{display:block;font-family:'DM Sans',sans-serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.mitem-txt p{font-size:.87rem;color:var(--text2);line-height:1.75}
+.mitem-txt a{color:var(--blue);text-decoration:none;font-size:.87rem}
+.mitem-txt a:hover{text-decoration:underline}
+
+/* ── CONTACT ── */
+#contact{position:relative;z-index:2;background:var(--white);padding:160px 0}
+.contact-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:120px}
+.cll h2{font-family:'Playfair Display',serif;font-size:clamp(2.3rem,3.8vw,4rem);font-weight:300;line-height:1.15;margin-top:16px;margin-bottom:52px;color:var(--navy)}
+.cll h2 em{font-style:italic;color:var(--blue)}
+.ci{margin-bottom:28px}
+.ci-lbl{font-family:'DM Sans',sans-serif;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:7px}
+.ci p{font-size:.87rem;color:var(--text2);line-height:1.85}
+.ci a{color:var(--blue);text-decoration:none}
+.ci a:hover{text-decoration:underline}
+.socrow{display:flex;gap:10px;margin-top:48px}
+.socc{width:46px;height:46px;border:1.5px solid rgba(59,130,232,.18);display:flex;align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;font-size:.68rem;color:var(--text3);text-decoration:none;transition:all .32s;letter-spacing:.05em}
+.socc:hover{border-color:var(--blue);color:var(--blue);background:var(--sky)}
+.cf{display:flex;flex-direction:column;gap:18px}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fg{display:flex;flex-direction:column;gap:8px}
+.fg label{font-family:'DM Sans',sans-serif;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text3)}
+.fg input,.fg textarea,.fg select{background:transparent;border:0;border-bottom:1.5px solid rgba(10,22,40,.1);color:var(--navy);padding:13px 0;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:300;outline:none;transition:border-color .32s;width:100%;border-radius:0;-webkit-appearance:none}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--blue)}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(10,22,40,.2)}
+.fg textarea{min-height:120px;resize:vertical;border:1.5px solid rgba(10,22,40,.08);padding:14px 16px;background:var(--offwhite)}
+.fg textarea:focus{border-color:var(--blue)}
+.fg select option{background:var(--white)}
+.fsubmit{align-self:flex-start;padding:18px 50px;background:var(--blue);color:var(--white);font-family:'DM Sans',sans-serif;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;border:none;cursor:pointer;transition:all .4s var(--ease);position:relative;overflow:hidden}
+.fsubmit::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--blue3),var(--accent));transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.fsubmit:hover::after{transform:scaleX(1)}
+.fsubmit:hover{transform:translateY(-3px);box-shadow:0 20px 60px rgba(26,75,140,.35)}
+.fsubmit span{position:relative;z-index:1}
+#fok{display:none;padding:18px 24px;color:var(--blue);font-family:'DM Sans',sans-serif;font-size:.7rem;letter-spacing:.14em;border:1px solid rgba(59,130,232,.22);background:var(--sky);text-align:center}
+
+/* ── WHATSAPP ── */
+#wa-float{position:fixed;bottom:32px;right:32px;z-index:850;width:58px;height:58px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(37,211,102,.35);transition:transform .3s var(--ease),box-shadow .3s;text-decoration:none}
+#wa-float:hover{transform:translateY(-4px) scale(1.08);box-shadow:0 18px 50px rgba(37,211,102,.5)}
+#wa-float svg{width:28px;height:28px;fill:white}
+.wa-pulse{position:absolute;inset:-5px;border-radius:50%;border:2px solid rgba(37,211,102,.4);animation:wa-ring 2s ease-out infinite}
+
+/* ── FOOTER ── */
+footer{position:relative;z-index:2;background:var(--navy);border-top:1px solid rgba(255,255,255,.04)}
+.ftop{max-width:1400px;margin:0 auto;padding:80px 80px 60px;display:grid;grid-template-columns:1.9fr 1fr 1fr 1fr;gap:64px}
+.fbrand{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:300;letter-spacing:.09em;color:var(--sky2);margin-bottom:16px}
+.fbrand b{color:var(--white);font-weight:400}
+.fdesc{font-size:.79rem;color:rgba(255,255,255,.3);line-height:2;max-width:270px}
+.fcol h5{font-family:'DM Sans',sans-serif;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:24px}
+.fcol ul{list-style:none}
+.fcol li{margin-bottom:13px}
+.fcol a{font-size:.79rem;color:rgba(255,255,255,.35);text-decoration:none;transition:color .3s}
+.fcol a:hover{color:var(--sky2)}
+.fbot{max-width:1400px;margin:0 auto;padding:24px 80px;border-top:1px solid rgba(255,255,255,.04);display:flex;justify-content:space-between;align-items:center}
+.fbot p{font-size:.66rem;color:rgba(255,255,255,.15);letter-spacing:.07em}
+
+/* ── REVEAL ── */
+.r{opacity:0;transform:translateY(44px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.r.in{opacity:1;transform:none}
+.r.d1{transition-delay:.12s}.r.d2{transition-delay:.24s}.r.d3{transition-delay:.36s}.r.d4{transition-delay:.48s}.r.d5{transition-delay:.6s}
+
+/* ── KEYFRAMES ── */
+@keyframes slup{to{transform:translateY(0)}}
+@keyframes fup{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes breathe{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes scroll-pulse{0%{transform:scaleY(0);transform-origin:top;opacity:1}50%{transform:scaleY(1);transform-origin:top;opacity:1}51%{transform:scaleY(1);transform-origin:bottom;opacity:1}100%{transform:scaleY(0);transform-origin:bottom;opacity:0}}
+@keyframes wa-ring{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.5);opacity:0}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  nav,nav.stuck{padding:16px 24px}
+  .nlinks{display:none}
+  .hcontent{padding:0 24px 90px}
+  .hdesc-row{flex-direction:column;gap:32px;align-items:flex-start}
+  .hscroll{right:24px;bottom:36px}
+  #stats{grid-template-columns:1fr}
+  .sr{min-height:60vh}
+  .svc-grid,.clients-cards,.test-grid,.why-tiles{grid-template-columns:1fr}
+  .svc-head,.why-layout,.cta-layout,.contact-layout,.about-layout,.believe-layout,.map-layout{grid-template-columns:1fr;gap:44px}
+  .proc-row{grid-template-columns:1fr 1fr}
+  .sectors-g{grid-template-columns:1fr 1fr;padding:0 24px}
+  .stile{aspect-ratio:unset;min-height:260px}
+  .ftop{grid-template-columns:1fr 1fr;gap:36px;padding:40px 24px}
+  .fbot{flex-direction:column;gap:8px;text-align:center;padding:20px 24px}
+  .fr{grid-template-columns:1fr}
+  .wrap,.clients-top{padding:0 24px!important}
+  .clients-top{padding-top:90px!important;padding-bottom:56px!important}
+  .clients-big{font-size:clamp(2.6rem,10vw,6.5rem)}
+  #awards{padding:40px 24px}
+  .awards-inner{flex-wrap:wrap;gap:24px}
+  .aw-items{gap:32px;flex-wrap:wrap;justify-content:center}
+  h1.hh{font-size:clamp(3rem,12vw,7.5rem)}
+  .gal-grid{grid-template-columns:1fr 1fr}
+  .gi1,.gi2,.gi3,.gi4,.gi5,.gi6,.gi7,.gi8,.gi9,.gi10{grid-column:auto;grid-row:auto;height:220px}
+  #gallery-strip{grid-template-columns:1fr 1fr;height:auto}
+  .ps-item{height:200px}
+  .about-img{height:360px}
+  .believe-photo img{height:400px}
+  .map-embed{height:320px}
+  .collage{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .ci1,.ci2,.ci3,.ci4,.ci5,.ci6{grid-column:auto;grid-row:auto;height:220px}
+  #wa-float{bottom:20px;right:20px;width:50px;height:50px}
+}
+</style>
+</head>
+<body>
+
+<!-- WHATSAPP FLOAT -->
+<a id="wa-float" href="https://wa.me/447537184292" target="_blank" rel="noopener" aria-label="WhatsApp us">
+  <div class="wa-pulse"></div>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.477 2 2 6.477 2 12.004c0 1.77.462 3.43 1.27 4.87L2 22l5.264-1.232A9.94 9.94 0 0012.004 22C17.53 22 22 17.523 22 12.004 22 6.477 17.53 2 12.004 2zm0 18.153a8.117 8.117 0 01-4.148-1.135l-.297-.176-3.124.733.763-3.04-.193-.312A8.118 8.118 0 013.883 12c0-4.482 3.643-8.124 8.121-8.124 4.48 0 8.122 3.642 8.122 8.124 0 4.48-3.642 8.153-8.122 8.153z"/></svg>
+</a>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="lw">
+    <span style="animation-delay:.07s">A</span><span style="animation-delay:.13s">n</span><span style="animation-delay:.19s">d</span><span style="animation-delay:.25s">a</span><span style="animation-delay:.31s">l</span><span style="animation-delay:.37s">u</span><span style="animation-delay:.43s">s</span>
+  </div>
+  <div class="lbar-wrap"><div class="lbar" id="lbar"></div></div>
+  <div class="lpct" id="lpct">0%</div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nbrand"><span class="nbrand-dot"></span>Andalus <b>Hospitality</b></a>
+  <ul class="nlinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#maparea">Find Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="ncta">Request Staff</a>
+</nav>
+
+<!-- HERO — FULLSCREEN IMAGE -->
+<section id="hero">
+  <div class="hero-bg">
+    <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a3a5c 0%,#2d6a9f 50%,#1e4d7a 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-vign"></div>
+  <div class="hcontent">
+    <div class="heyebrow">
+      <div class="heb-line"></div>
+      <div class="heb-txt">London · Est. 2024 · Company No. 17196206</div>
+      <div class="heb-badge">Registered England &amp; Wales</div>
+    </div>
+    <h1 class="hh">
+      <div class="hline"><span style="animation-delay:.35s">London's</span></div>
+      <div class="hline hd"><span style="animation-delay:.5s">Premier</span></div>
+      <div class="hline hi"><span style="animation-delay:.65s">Hospitality</span></div>
+      <div class="hline"><span style="animation-delay:.8s">Staffing.</span></div>
+    </h1>
+    <div class="hdesc-row">
+      <p class="hdesc">We place exceptional hospitality professionals in London's finest hotels, restaurants and event venues — fast, compliant, and precisely matched to your standards.</p>
+      <div class="hbtns">
+        <a href="#contact" class="btn-primary"><em>Request Staff</em><i> ✦</i></a>
+        <a href="https://wa.me/447537184292" target="_blank" class="btn-ghost">WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="hscroll">
+    <div class="hsline"></div>
+    <div class="hstxt">Scroll</div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-track">
+    <div class="mq-item"><span class="mq-diamond"></span>Hotel Staffing</div>
+    <div class="mq-item"><span class="mq-dot"></span>Restaurant Teams</div>
+    <div class="mq-item"><span class="mq-diamond"></span>Event Staff</div>
+    <div class="mq-item"><span class="mq-dot"></span>Emergency Cover</div>
+    <div class="mq-item"><span class="mq-diamond"></span>PAYE Managed</div>
+    <div class="mq-item"><span class="mq-dot"></span>Right to Work Verified</div>
+    <div class="mq-item"><span class="mq-diamond"></span>Same-Day Placement</div>
+    <div class="mq-item"><span class="mq-dot"></span>Agency Partnerships</div>
+    <div class="mq-item"><span class="mq-diamond"></span>East London &amp; Beyond</div>
+    <div class="mq-item"><span class="mq-dot"></span>Hotel Staffing</div>
+    <div class="mq-item"><span class="mq-diamond"></span>Restaurant Teams</div>
+    <div class="mq-item"><span class="mq-dot"></span>Event Staff</div>
+    <div class="mq-item"><span class="mq-diamond"></span>Emergency Cover</div>
+    <div class="mq-item"><span class="mq-dot"></span>PAYE Managed</div>
+    <div class="mq-item"><span class="mq-diamond"></span>Right to Work Verified</div>
+    <div class="mq-item"><span class="mq-dot"></span>Same-Day Placement</div>
+    <div class="mq-item"><span class="mq-diamond"></span>Agency Partnerships</div>
+  </div>
+</div>
+
+<!-- AWARD STRIP -->
+<section id="awards">
+  <div class="awards-inner">
+    <span class="aw-label">The Andalus Standard</span>
+    <div class="aw-divider"></div>
+    <div class="aw-items">
+      <div class="aw-item r"><span class="aw-num">350+</span><span class="aw-txt">Professionals Placed</span></div>
+      <div class="aw-item r d1"><span class="aw-num">42+</span><span class="aw-txt">Hotels &amp; Venues</span></div>
+      <div class="aw-item r d2"><span class="aw-num">98%</span><span class="aw-txt">Satisfaction Rate</span></div>
+      <div class="aw-item r d3"><span class="aw-num">2hr</span><span class="aw-txt">Response Time</span></div>
+      <div class="aw-item r d4"><span class="aw-num">24/7</span><span class="aw-txt">Emergency Cover</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-layout">
+    <div>
+      <div class="slbl r">Our Story</div>
+      <h2 class="sh2 r d1">London's <em>Trusted</em><br>Staffing Partner</h2>
+      <p class="sbody r d2" style="margin-top:22px">Andalus Hospitality Staffing was founded with a single mission: to bridge the gap between London's world-class hospitality venues and the exceptional talent they deserve.</p>
+      <p class="sbody r d3" style="margin-top:16px">Registered in England &amp; Wales and based in East London, we understand the pressure, the pace, and the precision that luxury hospitality demands — because we've lived it.</p>
+      <div class="about-features r d4">
+        <div class="af"><span class="af-ico">🌍</span><div class="af-txt"><strong>Multilingual Recruitment</strong><p>Our team recruits across language barriers, sourcing talent from the UK and internationally — always with full right-to-work verification.</p></div></div>
+        <div class="af"><span class="af-ico">🤝</span><div class="af-txt"><strong>Dedicated Account Management</strong><p>You work with the same person every time. One contact for every role, every shift, every venue — no handoffs, no confusion.</p></div></div>
+        <div class="af"><span class="af-ico">⚖️</span><div class="af-txt"><strong>Full Legal Compliance</strong><p>PAYE, contracts, employer's liability, professional indemnity — every placement is fully managed to UK employment law.</p></div></div>
+      </div>
+    </div>
+    <div class="about-img-wrap r d2">
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#0d2b45 0%,#1a5276 50%,#154360 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div>
+      <div class="about-img-frame"></div>
+      <div class="about-img-badge"><strong>98%</strong><span>Client Retention</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="sl">
+    <div class="slbl r">Our Track Record</div>
+    <h2 class="sh2 r d1">Numbers That<br>Speak <em>Louder</em><br>Than Words</h2>
+    <p class="sbody r d2" style="max-width:440px;margin-top:20px">Since formation, Andalus Hospitality Staffing has built a reputation for precision, speed and uncompromising quality — placing the right people, every time.</p>
+    <div style="margin-top:46px" class="r d3"><a href="#contact" class="btn-primary"><em>Join Our Clients</em><i> →</i></a></div>
+  </div>
+  <div class="sr" id="stat-wrap">
+    <div class="sc r"><div class="sc-ico">👷</div><div class="sc-n"><span class="cnt" data-t="350">0</span><sup>+</sup></div><div class="sc-t">Hospitality<br>Professionals Placed</div></div>
+    <div class="sc r d1"><div class="sc-ico">🏨</div><div class="sc-n"><span class="cnt" data-t="42">0</span><sup>+</sup></div><div class="sc-t">Hotels &amp;<br>Venues Served</div></div>
+    <div class="sc r d2"><div class="sc-ico">🍽️</div><div class="sc-n"><span class="cnt" data-t="28">0</span><sup>+</sup></div><div class="sc-t">Restaurants &amp;<br>Bars Partnered</div></div>
+    <div class="sc r d3"><div class="sc-ico">⭐</div><div class="sc-n"><span class="cnt" data-t="98">0</span><sup>%</sup></div><div class="sc-t">Client<br>Satisfaction Rate</div></div>
+  </div>
+</section>
+
+<!-- PHOTO GALLERY — LARGE MOSAIC -->
+<section id="gallery-main">
+  <div class="gallery-header">
+    <div>
+      <div class="slbl r">Our World</div>
+      <h2 class="sh2 r d1">Hospitality in <em>Action</em></h2>
+    </div>
+    <a href="#contact" class="btn-outline r d2"><em>Work With Us →</em></a>
+  </div>
+  <div class="gal-grid">
+    <div class="gi gi1"><div style="width:100%;height:100%;background:linear-gradient(160deg,#1b2a4a 0%,#2e5c8a 60%,#1a3d6e 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="gi-cap">Fine Dining</div></div>
+    <div class="gi gi2"><div style="width:100%;height:100%;background:linear-gradient(135deg,#0a1628 0%,#1a4b8c 50%,#0d2b45 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="gi-cap">Hotel Breakfast</div></div>
+    <div class="gi gi3"><div style="width:100%;height:100%;background:linear-gradient(150deg,#163260 0%,#2266c4 60%,#0f2547 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="gi-cap">Luxury Hotels</div></div>
+    <div class="gi gi4"><div style="width:100%;height:100%;background:linear-gradient(135deg,#102547 0%,#1e5aa8 50%,#0a1f3d 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="gi-cap">Bar Service</div></div>
+    <div class="gi gi5"><div style="width:100%;height:100%;background:linear-gradient(160deg,#0d1f3c 0%,#3b82e8 60%,#1a3d7a 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="gi-cap">Room Service</div></div>
+    <div class="gi gi6"><div style="width:100%;height:100%;background:linear-gradient(135deg,#1a2a4a 0%,#2c5f9e 50%,#132240 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="gi-cap">Kitchen Teams</div></div>
+    <div class="gi gi7"><div style="width:100%;height:100%;background:linear-gradient(140deg,#0a1f3a 0%,#1d5499 60%,#0d2b4f 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="gi-cap">Corporate Events</div></div>
+    <div class="gi gi8"><div style="width:100%;height:100%;background:linear-gradient(135deg,#162040 0%,#2a5fa0 50%,#101c36 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="gi-cap">Restaurant Service</div></div>
+    <div class="gi gi9"><div style="width:100%;height:100%;background:linear-gradient(135deg,#1a3a5c 0%,#2d6a9f 50%,#1e4d7a 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="gi-cap">Cocktail Bar</div></div>
+    <div class="gi gi10"><div style="width:100%;height:100%;background:linear-gradient(135deg,#0d2b45 0%,#1a5276 50%,#154360 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="gi-cap">Event Setup</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="svc-head">
+      <div>
+        <div class="slbl r">What We Do</div>
+        <h2 class="sh2 r d1">Our <em>Services</em></h2>
+      </div>
+      <p class="sbody r d2">From emergency cover to permanent placement, we deliver the right hospitality talent at the right moment — without compromise.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="scard r"><span class="sc-num">01</span><span class="sc-ico2">🏨</span><h3>Hotel Staffing</h3><p>Front-of-house, housekeeping, concierge and F&amp;B teams for luxury, boutique and business properties across London.</p><span class="scard-link">Explore →</span></div>
+      <div class="scard r d1"><span class="sc-num">02</span><span class="sc-ico2">🍴</span><h3>Restaurant Teams</h3><p>Skilled waitstaff, bartenders and kitchen porters — matched to your cuisine, service culture and shift requirements.</p><span class="scard-link">Explore →</span></div>
+      <div class="scard r d2"><span class="sc-num">03</span><span class="sc-ico2">🎪</span><h3>Event Staffing</h3><p>Corporate galas, private dinners and large-scale events — scaled seamlessly and deployed fast. No event too large.</p><span class="scard-link">Explore →</span></div>
+      <div class="scard r d3"><span class="sc-num">04</span><span class="sc-ico2">⚡</span><h3>Emergency Cover</h3><p>Same-day replacements when you need them most. Our ready roster ensures zero service gaps — ever.</p><span class="scard-link">Explore →</span></div>
+      <div class="scard r d4"><span class="sc-num">05</span><span class="sc-ico2">🤝</span><h3>Agency Partnerships</h3><p>Reliable subcontracting for other agencies. Overflow capacity with all compliance fully handled by us.</p><span class="scard-link">Explore →</span></div>
+      <div class="scard r d5"><span class="sc-num">06</span><span class="sc-ico2">⚖️</span><h3>PAYE &amp; Compliance</h3><p>Every placement is fully managed — payroll, right-to-work checks, contracts and insurance included.</p><span class="scard-link">Explore →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP 5-column -->
+<div id="photo-strip">
+  <div class="ps-item"><div style="width:100%;height:100%;background:linear-gradient(160deg,#1b2a4a 0%,#2e5c8a 60%,#1a3d6e 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="ps-cap">Luxury Hotels</div></div>
+  <div class="ps-item"><div style="width:100%;height:100%;background:linear-gradient(135deg,#0a1628 0%,#1a4b8c 50%,#0d2b45 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="ps-cap">Catering</div></div>
+  <div class="ps-item"><div style="width:100%;height:100%;background:linear-gradient(150deg,#163260 0%,#2266c4 60%,#0f2547 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="ps-cap">Bar Teams</div></div>
+  <div class="ps-item"><div style="width:100%;height:100%;background:linear-gradient(135deg,#102547 0%,#1e5aa8 50%,#0a1f3d 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="ps-cap">Weddings</div></div>
+  <div class="ps-item"><div style="width:100%;height:100%;background:linear-gradient(160deg,#0d1f3c 0%,#3b82e8 60%,#1a3d7a 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="ps-cap">Kitchens</div></div>
+</div>
+
+<!-- CLIENT STORIES -->
+<section id="clients">
+  <div class="clients-top">
+    <div class="slbl r" style="color:rgba(255,255,255,.35)">Client Experiences</div>
+    <h2 class="clients-big r d1">Trusted<br>by <em>London's</em><br><span class="dim">Finest.</span></h2>
+  </div>
+  <div class="clients-cards">
+    <div class="ccard r"><div class="ccard-border"></div><div class="cc-cat">5-Star Hotels</div><div class="cc-name">Mayfair Collection</div><p class="cc-body">Ongoing supply of front-of-house and F&amp;B staff across three luxury properties in central London — consistent, professional, reliable.</p><div class="cc-stats"><div class="ccs"><div class="csn">200+</div><div class="csl">Shifts</div></div><div class="ccs"><div class="csn">12</div><div class="csl">Roles</div></div><div class="ccs"><div class="csn">★ 5.0</div><div class="csl">Rating</div></div></div></div>
+    <div class="ccard r d1"><div class="ccard-border"></div><div class="cc-cat">Corporate Events</div><div class="cc-name">City Gala Series</div><p class="cc-body">Emergency deployment of 14 experienced waitstaff for a high-profile gala dinner — delivered immaculately in under 24 hours.</p><div class="cc-stats"><div class="ccs"><div class="csn">30+</div><div class="csl">Events</div></div><div class="ccs"><div class="csn">14</div><div class="csl">Staff</div></div><div class="ccs"><div class="csn">★ 5.0</div><div class="csl">Rating</div></div></div></div>
+    <div class="ccard r d2"><div class="ccard-border"></div><div class="cc-cat">Restaurant Groups</div><div class="cc-name">Central London Dining</div><p class="cc-body">Long-term staffing partner for a multi-site restaurant group. Dependable vetted talent delivered every time without fail.</p><div class="cc-stats"><div class="ccs"><div class="csn">3</div><div class="csl">Venues</div></div><div class="ccs"><div class="csn">50+</div><div class="csl">Shifts/Mo</div></div><div class="ccs"><div class="csn">★ 5.0</div><div class="csl">Rating</div></div></div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="slbl r">What Clients Say</div>
+    <h2 class="sh2 r d1">Words From Our <em>Partners</em></h2>
+    <div class="test-grid">
+      <div class="tc r"><div class="tc-qm">"</div><div class="tc-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="tc-body">Andalus have consistently delivered professional, well-presented staff at short notice. They understand the pace of hospitality and never let us down.</p><div class="tc-author"><div class="tc-ava">J</div><div><div class="tc-name">James M.</div><div class="tc-role">Operations Manager, 5★ Hotel, Mayfair</div></div></div></div>
+      <div class="tc r d1"><div class="tc-qm">"</div><div class="tc-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="tc-body">We needed 12 waitstaff for a last-minute gala. Andalus delivered 14 — all immaculate and experienced. Our client was absolutely delighted.</p><div class="tc-author"><div class="tc-ava">S</div><div><div class="tc-name">Sarah K.</div><div class="tc-role">Director, Corporate Events Agency</div></div></div></div>
+      <div class="tc r d2"><div class="tc-qm">"</div><div class="tc-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="tc-body">The billing is transparent, the staff are vetted, and the response is always fast. Andalus has become our go-to partner for all temporary staffing.</p><div class="tc-author"><div class="tc-ava">R</div><div><div class="tc-name">Rachel T.</div><div class="tc-role">GM, Restaurant Group, Central London</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="wrap">
+    <div class="slbl r">How It Works</div>
+    <h2 class="sh2 r d1">Four Steps to <em>Perfect Placement</em></h2>
+    <div class="proc-row">
+      <div class="pstep r"><div class="pnum">01</div><h4>Brief Us</h4><p>Tell us the role, shift times, number of staff and any specific experience required.</p></div>
+      <div class="pstep r d1"><div class="pnum">02</div><h4>We Match</h4><p>We select fully vetted, right-to-work verified candidates from our ready roster.</p></div>
+      <div class="pstep r d2"><div class="pnum">03</div><h4>Staff Deployed</h4><p>Professionals arrive on time, prepared. We manage all payroll and compliance.</p></div>
+      <div class="pstep r d3"><div class="pnum">04</div><h4>Review &amp; Refine</h4><p>Dedicated support ensures consistent quality and continuous improvement.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section id="sectors">
+  <div class="wrap">
+    <div class="slbl r">Industries We Serve</div>
+    <h2 class="sh2 r d1">Our <em>Sectors</em></h2>
+  </div>
+  <div class="sectors-g">
+    <div class="stile r">
+      <div class="stbg-img" style="background:linear-gradient(150deg,#163260 0%,#2266c4 60%,#0f2547 100%)"></div>
+      <div class="stinner"><span class="stnum">01</span><span class="sticon">🏨</span><h4>Hotels</h4><p>Luxury, boutique and business properties</p></div><div class="stbar"></div>
+    </div>
+    <div class="stile r d1">
+      <div class="stbg-img" style="background:linear-gradient(135deg,#102547 0%,#1e5aa8 50%,#0a1f3d 100%)"></div>
+      <div class="stinner"><span class="stnum">02</span><span class="sticon">🍴</span><h4>Restaurants</h4><p>Fine dining to casual eateries</p></div><div class="stbar"></div>
+    </div>
+    <div class="stile r d2">
+      <div class="stbg-img" style="background:linear-gradient(160deg,#0d1f3c 0%,#3b82e8 60%,#1a3d7a 100%)"></div>
+      <div class="stinner"><span class="stnum">03</span><span class="sticon">🎭</span><h4>Events</h4><p>Corporate functions, galas &amp; weddings</p></div><div class="stbar"></div>
+    </div>
+    <div class="stile r d3">
+      <div class="stbg-img" style="background:linear-gradient(135deg,#1a2a4a 0%,#2c5f9e 50%,#132240 100%)"></div>
+      <div class="stinner"><span class="stnum">04</span><span class="sticon">✈️</span><h4>Travel &amp; Leisure</h4><p>Lounges, spas &amp; travel destinations</p></div><div class="stbar"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="wrap">
+    <div class="why-layout">
+      <div>
+        <div class="slbl r">The Andalus Standard</div>
+        <h2 class="sh2 r d1">Why London's Best<br><em>Choose Us</em></h2>
+        <p class="sbody r d2" style="margin-top:20px;max-width:420px">We're not just a staffing agency. We're a quality partner that understands the pressure, pace and precision that hospitality demands.</p>
+        <div style="margin-top:46px" class="r d3"><a href="#contact" class="btn-primary"><em>Work With Us</em><i> ✦</i></a></div>
+      </div>
+      <div class="why-tiles r d1">
+        <div class="wtile"><span class="wtico">⚖️</span><h4>100% Compliant</h4><p>Right-to-work, contracts, payroll — all fully managed to UK employment law.</p></div>
+        <div class="wtile"><span class="wtico">🎯</span><h4>Precision Matching</h4><p>Skills, experience and personality matched to your exact culture and standards.</p></div>
+        <div class="wtile"><span class="wtico">⚡</span><h4>Rapid Response</h4><p>Same-day and next-day placements. Our ready roster means zero gaps.</p></div>
+        <div class="wtile"><span class="wtico">🛡️</span><h4>Fully Insured</h4><p>Employers liability, professional indemnity and public liability every placement.</p></div>
+        <div class="wtile"><span class="wtico">💎</span><h4>Zero Hidden Fees</h4><p>Timesheet-based invoicing. Complete transparency on every shift.</p></div>
+        <div class="wtile"><span class="wtico">🤝</span><h4>Long-Term Thinking</h4><p>We build partnerships, not transactions. Your success is our benchmark.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BELIEVE -->
+<section id="believe">
+  <div class="believe-layout">
+    <div>
+      <div class="slbl r">Our Philosophy</div>
+      <h2 class="sh2 r d1">What We <em>Believe</em></h2>
+      <div class="believe-list">
+        <div class="bitem r"><span class="bnum">01</span><div><strong>People First, Always</strong><p>We treat every candidate with genuine respect. Great candidates who weren't placed this time still recommend us — because we value people over transactions.</p></div></div>
+        <div class="bitem r d1"><span class="bnum">02</span><div><strong>Trust Through Transparency</strong><p>No hidden fees, no surprises. We believe honest relationships create long-term partners — and 98% of our clients come back to us.</p></div></div>
+        <div class="bitem r d2"><span class="bnum">03</span><div><strong>Excellence Is Non-Negotiable</strong><p>We only place candidates we would be proud to work alongside ourselves. Every person on our roster is vetted, verified and ready to represent your brand.</p></div></div>
+        <div class="bitem r d3"><span class="bnum">04</span><div><strong>Discretion Above All</strong><p>Your business, your staff, your operations — entirely confidential. Privacy is not a feature; it's our foundation.</p></div></div>
+      </div>
+    </div>
+    <div class="believe-photo r d2">
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a2a4a 0%,#2c5f9e 50%,#132240 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO COLLAGE -->
+<section id="gallery2">
+  <div class="collage">
+    <div class="ci-item ci1"><div style="width:100%;height:100%;background:linear-gradient(140deg,#0a1f3a 0%,#1d5499 60%,#0d2b4f 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="ci-label">Hotel Suites</div></div>
+    <div class="ci-item ci2"><div style="width:100%;height:100%;background:linear-gradient(135deg,#162040 0%,#2a5fa0 50%,#101c36 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="ci-label">Fine Cuisine</div></div>
+    <div class="ci-item ci3"><div style="width:100%;height:100%;background:linear-gradient(135deg,#1a3a5c 0%,#2d6a9f 50%,#1e4d7a 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="ci-label">Celebrations</div></div>
+    <div class="ci-item ci4"><div style="width:100%;height:100%;background:linear-gradient(135deg,#0d2b45 0%,#1a5276 50%,#154360 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="ci-label">Table Service</div></div>
+    <div class="ci-item ci5"><div style="width:100%;height:100%;background:linear-gradient(160deg,#1b2a4a 0%,#2e5c8a 60%,#1a3d6e 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="ci-label">Evening Events</div></div>
+    <div class="ci-item ci6"><div style="width:100%;height:100%;background:linear-gradient(135deg,#0a1628 0%,#1a4b8c 50%,#0d2b45 100%);display:flex;align-items:center;justify-content:center;"><span style="color:rgba(255,255,255,0.15);font-family:serif;font-size:2rem;letter-spacing:.2em">✦</span></div><div class="ci-label">Cocktails</div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="wrap">
+    <div class="cta-layout">
+      <div class="ctal">
+        <div class="slbl r">Ready to Start?</div>
+        <h2 class="r d1">Need Staff<br><em>Right Now?</em></h2>
+        <p class="r d2">We respond to all enquiries within 2 hours. Whether one person tomorrow or a full team next week — we're ready.</p>
+        <div class="cta-btns r d3">
+          <a href="#contact" style="background:var(--white);color:var(--blue);padding:18px 46px;font-family:'DM Sans',sans-serif;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;display:inline-block;transition:all .35s" onmouseover="this.style.background='var(--sky)'" onmouseout="this.style.background='var(--white)'">Send an Enquiry →</a>
+          <a href="mailto:info@andalustaffing.co.uk" style="padding:18px 32px;border:1.5px solid rgba(255,255,255,.3);color:rgba(255,255,255,.7);font-family:'DM Sans',sans-serif;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;display:inline-block;transition:all .35s" onmouseover="this.style.borderColor='rgba(255,255,255,.7)';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(255,255,255,.3)';this.style.color='rgba(255,255,255,.7)'">Email Directly ↗</a>
+        </div>
+      </div>
+      <div class="ctaboxes r d2">
+        <a href="#contact" class="ctabox"><span class="cbico">📋</span><div class="cbtxt"><strong>Submit a Staff Brief</strong><span>Tell us exactly what you need</span></div></a>
+        <a href="mailto:info@andalustaffing.co.uk" class="ctabox"><span class="cbico">✉️</span><div class="cbtxt"><strong>Email Us</strong><span>info@andalustaffing.co.uk</span></div></a>
+        <a href="https://wa.me/447537184292" target="_blank" class="ctabox"><span class="cbico">💬</span><div class="cbtxt"><strong>WhatsApp</strong><span>+44 7537 184292 — instant response</span></div></a>
+        <a href="#contact" class="ctabox"><span class="cbico">📄</span><div class="cbtxt"><strong>Agency Partnership</strong><span>Become a subcontracting partner</span></div></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section id="maparea">
+  <div class="map-layout">
+    <div>
+      <div class="slbl r">Our Location</div>
+      <h3 class="map-info r d1">Find Us in <em>London</em></h3>
+      <div style="margin-top:8px">
+        <div class="mitem r d1"><div class="mico">📍</div><div class="mitem-txt"><strong>Registered Office</strong><p>171 Barking Road<br>London, E16 4HQ<br>England, United Kingdom</p></div></div>
+        <div class="mitem r d2"><div class="mico">✉️</div><div class="mitem-txt"><strong>Email</strong><p><a href="mailto:info@andalustaffing.co.uk">info@andalustaffing.co.uk</a></p></div></div>
+        <div class="mitem r d3"><div class="mico">📞</div><div class="mitem-txt"><strong>Phone &amp; WhatsApp</strong><p><a href="tel:+447537184292">+44 7537 184292</a></p></div></div>
+        <div class="mitem r d4"><div class="mico">🕐</div><div class="mitem-txt"><strong>Office Hours</strong><p>Monday – Friday: 9am – 6pm<br>Emergency line: 24/7</p></div></div>
+        <div class="mitem r d5"><div class="mico">🏢</div><div class="mitem-txt"><strong>Company</strong><p>Andalus Hospitality Staffing Ltd<br>Company No. 17196206 · England &amp; Wales</p></div></div>
+      </div>
+    </div>
+    <div class="r d2">
+      <iframe class="map-embed" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.4!2d0.0195!3d51.5082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a84f9f2a4b5b%3A0x0!2s171+Barking+Rd%2C+London+E16+4HQ!5e0!3m2!1sen!2suk!4v1" width="100%" height="480" style="border:0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Andalus Hospitality Staffing — 171 Barking Road, London E16 4HQ"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-layout">
+      <div class="cll">
+        <div class="slbl r">Get In Touch</div>
+        <h2 class="r d1">Let's <em>Build</em><br>Something Great</h2>
+        <div class="ci r d2"><span class="ci-lbl">Registered Office</span><p>171 Barking Road<br>London, E16 4HQ, England</p></div>
+        <div class="ci r d3"><span class="ci-lbl">Email</span><p><a href="mailto:info@andalustaffing.co.uk">info@andalustaffing.co.uk</a></p></div>
+        <div class="ci r d4"><span class="ci-lbl">Phone &amp; WhatsApp</span><p><a href="tel:+447537184292">+44 7537 184292</a></p></div>
+        <div class="ci r d5"><span class="ci-lbl">Company</span><p>Andalus Hospitality Staffing Ltd<br>No. 17196206 · England &amp; Wales</p></div>
+        <div class="socrow r d5">
+          <a class="socc" href="https://wa.me/447537184292" target="_blank" title="WhatsApp">WA</a>
+          <a class="socc" href="mailto:info@andalustaffing.co.uk" title="Email">EM</a>
+          <a class="socc" href="tel:+447537184292" title="Call us">📞</a>
+        </div>
+      </div>
+      <form class="cf r d1" onsubmit="doSubmit(event)">
+        <div class="fr">
+          <div class="fg"><label>First Name</label><input type="text" placeholder="John" required></div>
+          <div class="fg"><label>Last Name</label><input type="text" placeholder="Smith" required></div>
+        </div>
+        <div class="fr">
+          <div class="fg"><label>Email</label><input type="email" placeholder="john@hotel.com" required></div>
+          <div class="fg"><label>Phone</label><input type="tel" placeholder="+44 ..."></div>
+        </div>
+        <div class="fg"><label>Company / Venue</label><input type="text" placeholder="Hotel, restaurant or agency name"></div>
+        <div class="fr">
+          <div class="fg"><label>Staff Type</label>
+            <select>
+              <option>Select role...</option>
+              <option>Waiter / Waitress</option>
+              <option>Chef / Kitchen Staff</option>
+              <option>Bartender</option>
+              <option>Front Desk / Reception</option>
+              <option>Housekeeping</option>
+              <option>Event Staff</option>
+              <option>Concierge</option>
+              <option>Restaurant Manager</option>
+              <option>Multiple Roles</option>
+            </select>
+          </div>
+          <div class="fg"><label>Number of Staff</label><input type="number" placeholder="e.g. 5" min="1"></div>
+        </div>
+        <div class="fg"><label>Message &amp; Requirements</label><textarea placeholder="Dates, hours, specific skills, any other details..."></textarea></div>
+        <button type="submit" class="fsubmit"><span>Send Enquiry →</span></button>
+        <div id="fok">✦ Message received — we'll be in touch within 2 hours ✦</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ftop">
+    <div>
+      <div class="fbrand">Andalus <b>Hospitality Staffing</b></div>
+      <p class="fdesc">London's premier hospitality staffing agency. Placing exceptional talent in hotels, restaurants and event venues across the UK.</p>
+      <div style="margin-top:26px;display:flex;gap:10px">
+        <a href="https://wa.me/447537184292" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:11px 18px;background:#25d366;color:#000;font-family:'DM Sans',sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:opacity .3s" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='1'">💬 WhatsApp</a>
+        <a href="mailto:info@andalustaffing.co.uk" style="display:inline-flex;align-items:center;gap:7px;padding:11px 18px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.45);font-family:'DM Sans',sans-serif;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:all .3s" onmouseover="this.style.background='rgba(255,255,255,.05)'" onmouseout="this.style.background='transparent'">✉️ Email Us</a>
+      </div>
+    </div>
+    <div class="fcol"><h5>Services</h5><ul><li><a href="#services">Hotel Staffing</a></li><li><a href="#services">Restaurant Staff</a></li><li><a href="#services">Event Teams</a></li><li><a href="#services">Emergency Cover</a></li><li><a href="#services">Agency Partners</a></li></ul></div>
+    <div class="fcol"><h5>Company</h5><ul><li><a href="#about">About Us</a></li><li><a href="#clients">Client Stories</a></li><li><a href="#process">How It Works</a></li><li><a href="#believe">Our Values</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    <div class="fcol"><h5>Contact</h5><ul>
+      <li><a href="mailto:info@andalustaffing.co.uk">info@andalustaffing.co.uk</a></li>
+      <li><a href="tel:+447537184292">+44 7537 184292</a></li>
+      <li><a href="https://wa.me/447537184292" target="_blank">WhatsApp</a></li>
+      <li><a href="#maparea">171 Barking Road</a></li>
+      <li><a href="#maparea">London, E16 4HQ</a></li>
+    </ul></div>
+  </div>
+  <div class="fbot">
+    <p>© 2026 Andalus Hospitality Staffing Ltd · Company No. 17196206</p>
+    <p>171 Barking Road, London E16 4HQ · Registered in England &amp; Wales</p>
+  </div>
+</footer>
+
+<script>
+/* ══ LOADER ══ */
+const lbar=document.getElementById('lbar'),lpct=document.getElementById('lpct'),loader=document.getElementById('loader');
+let p=0;
+const li=setInterval(()=>{
+  p+=Math.random()*14;if(p>=100){p=100;clearInterval(li);}
+  lbar.style.width=p+'%';lpct.textContent=Math.floor(p)+'%';
+  if(p===100)setTimeout(()=>{loader.classList.add('gone');setTimeout(()=>loader.style.display='none',1200)},500);
+},80);
+
+/* ══ NAV ══ */
+addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('stuck',scrollY>80));
+
+/* ══ REVEAL ══ */
+const ro=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:.07});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+
+/* ══ COUNT UP ══ */
+function countUp(el){
+  const t=+el.dataset.t;let c=0;
+  const sup=el.closest('.sc-n')?.querySelector('sup');if(sup)sup.style.opacity='0';
+  const tm=setInterval(()=>{c+=t/70;if(c>=t){c=t;clearInterval(tm);if(sup)sup.style.opacity='1';}el.textContent=Math.floor(c);},2000/70);
+}
+const co=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.cnt').forEach(countUp);co.unobserve(e.target);}});},{threshold:.3});
+const sw=document.getElementById('stat-wrap');if(sw)co.observe(sw);
+
+/* ══ FORM ══ */
+function doSubmit(e){
+  e.preventDefault();
+  const ok=document.getElementById('fok');
+  ok.style.display='block';
+  e.target.reset();
+  setTimeout(()=>ok.style.display='none',6000);
+}
+
+/* ══ HERO PARALLAX ══ */
+addEventListener('scroll',()=>{
+  const hcontent=document.querySelector('.hcontent');
+  if(hcontent&&scrollY<innerHeight){
+    hcontent.style.transform=`translateY(${scrollY*.13}px)`;
+    hcontent.style.opacity=1-scrollY/(innerHeight*.6);
+  }
+});
+</script>
+</body>
+</html>
